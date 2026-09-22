@@ -36,7 +36,7 @@ const categories = [
 const formatPrice = (value: number) => `${new Intl.NumberFormat('hu-HU').format(value)} Ft`;
 
 function BrandMark() {
-  return <div className="brand"><div className="brand-mark" /><div className="brand-word">GENERAL GUMI<small>A JÁRMŰVEK SZAKÉRTŐJE</small></div></div>;
+  return <div className="brand"><img className="brand-logo-image" src="/images/general-gumi-logo.png" alt="General Gumi – A járművek szakértője" /></div>;
 }
 
 function Header({ cartCount, onCart, onSearch }: { cartCount: number; onCart: () => void; onSearch: (value: string) => void }) {
