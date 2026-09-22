@@ -156,7 +156,7 @@ img { display: block; max-width: 100%; }
 
 .footer { background:var(--ink); color:#e2ece8; padding:46px 0 25px; }
 .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:30px; padding-bottom:42px; border-bottom:1px solid rgba(255,255,255,.15); }
-.footer .brand { background:var(--white); padding:3px 8px; border-radius:5px; width:max-content; }
+.footer .brand { background:transparent; padding:0; border-radius:0; width:max-content; }
 .footer .brand-logo-image { width:220px; height:70px; }
 .footer .brand-mark { background:var(--acid); border-color:var(--acid); color:var(--ink); }
 .footer .brand-mark::before { border-color:var(--ink); }
