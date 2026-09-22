@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "General Gumi Shop"
+description = "A modernized Hungarian webshop for General Gumi with a browsable tire catalog, clear fitment details, product filters, and a functional cart experience built around the client's existing product imagery."
+version = "1.0.0"
+id = "artifacts/general-gumi-shop"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22589
+
+[services.development]
+run = "pnpm --filter @workspace/general-gumi-shop run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/general-gumi-shop", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/general-gumi-shop/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22589"
+BASE_PATH = "/"
