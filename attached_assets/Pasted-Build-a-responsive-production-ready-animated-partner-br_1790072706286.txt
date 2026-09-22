@@ -1,0 +1,200 @@
+Build a responsive, production-ready **animated partner/brand logo strip** for my car parts shop website.
+
+### Reference
+Use the partner-logo section near the footer of this website as the visual inspiration:
+https://generalgumi.hu/
+
+I want a similar **continuously scrolling horizontal logo carousel/marquee**, where the logos of all the car-part brands my shop partners with are displayed in a clean, professional way.
+
+### Main requirements
+
+Create a reusable component called:
+
+`PartnerBrands`
+
+It should:
+
+- Display multiple automotive brand/supplier logos in a single horizontal row.
+- Continuously scroll the logos from **right to left**.
+- Have a smooth, seamless, infinite-loop animation with **no visible jump or reset**.
+- Duplicate the logo list internally if necessary to create the seamless infinite effect.
+- Pause the animation when the user hovers over the logo strip.
+- Resume when the mouse leaves.
+- Work properly on desktop, tablet, and mobile.
+- Never cause horizontal scrolling on the overall webpage.
+- Keep all logos vertically centered and consistently sized.
+- Use grayscale/monochrome logos by default for a clean professional appearance.
+- On hover, optionally transition the hovered logo to full color and slightly increase its opacity/scale.
+- Have generous spacing between logos.
+- Use a subtle, modern design appropriate for an automotive/car-parts ecommerce website.
+
+### Visual style
+
+The section should look similar in concept to the partner-brand strip on General Gumi:
+
+- White or very light background.
+- Clean horizontal layout.
+- Logos are the main visual focus.
+- No large cards around each logo.
+- No excessive borders or shadows.
+- Plenty of whitespace.
+- Smooth animation.
+- Professional automotive/ecommerce aesthetic.
+
+Add a small heading above the logos:
+
+"Partnereink"
+
+and optionally a subtle subtitle:
+
+"Minőségi alkatrészek vezető gyártóktól"
+
+Make the text easy to change through component props/configuration.
+
+### Logos
+
+For now, create a configurable array such as:
+
+```js
+const brands = [
+  { name: "Bosch", logo: "/brands/bosch.svg" },
+  { name: "Brembo", logo: "/brands/brembo.svg" },
+  { name: "Mann-Filter", logo: "/brands/mann-filter.svg" },
+  { name: "Valeo", logo: "/brands/valeo.svg" },
+  { name: "Sachs", logo: "/brands/sachs.svg" },
+  { name: "Continental", logo: "/brands/continental.svg" },
+  { name: "SKF", logo: "/brands/skf.svg" },
+  { name: "NGK", logo: "/brands/ngk.svg" },
+  { name: "Mahle", logo: "/brands/mahle.svg" },
+  { name: "Febi", logo: "/brands/febi.svg" }
+];
+```
+
+Do NOT assume these are my actual partners. Make it extremely easy for me to replace the names and logo paths with my real partner brands later.
+
+If actual logo files are not available yet, create clearly marked placeholder logo elements or use simple text placeholders rather than downloading copyrighted logos without permission.
+
+### Animation requirements
+
+Use CSS animations where possible rather than JavaScript animation.
+
+The animation should:
+
+- Move continuously at a consistent speed.
+- Have a configurable duration, for example:
+
+```css
+--marquee-duration: 30s;
+```
+
+- Be seamless when it loops.
+- Avoid any sudden repositioning.
+- Have enough duplicated content that there is never an empty space.
+- Support `prefers-reduced-motion`.
+
+For users who have reduced motion enabled, disable the continuous animation and display the logos as a normal horizontally scrollable or wrapped layout.
+
+### Edge fading
+
+Add a subtle fade/mask at the left and right edges of the marquee so logos smoothly disappear into the edges of the container.
+
+For example, use CSS:
+
+```css
+mask-image: linear-gradient(
+  to right,
+  transparent,
+  black 8%,
+  black 92%,
+  transparent
+);
+```
+
+Use an appropriate fallback for browsers that don't support `mask-image`.
+
+### Responsive behavior
+
+Desktop:
+- Show approximately 5–7 logos at once depending on screen width.
+- Logos should be relatively large and clearly visible.
+
+Tablet:
+- Show approximately 4–5 logos.
+
+Mobile:
+- Show approximately 2–3 logos.
+- Reduce logo dimensions and spacing.
+- Keep the animation smooth and readable.
+
+Do not let the component create page-level horizontal overflow.
+
+### Accessibility
+
+Implement the component with accessibility in mind:
+
+- Use meaningful `alt` text for every logo.
+- Decorative duplicate logos used only for animation should not be announced repeatedly by screen readers.
+- The heading should use an appropriate semantic heading element.
+- Respect `prefers-reduced-motion`.
+- Do not make the component keyboard-hostile.
+
+### Code quality
+
+Use the framework already present in the Replit project. **Do not rewrite the entire project or change the existing tech stack.**
+
+First inspect the existing project structure and determine whether it uses React, Next.js, Vite, plain HTML/CSS/JS, etc.
+
+Then integrate the component into the existing website using the project's existing conventions.
+
+Keep the component modular and reusable.
+
+For example, if this is React, structure it approximately like:
+
+```jsx
+<PartnerBrands
+  title="Partnereink"
+  subtitle="Minőségi alkatrészek vezető gyártóktól"
+  brands={brands}
+  speed={30}
+/>
+```
+
+Do not hard-code the brands directly throughout the component.
+
+### Placement
+
+Place the component **above the website footer**, similar to the location of the partner-logo strip on General Gumi.
+
+Make sure there is appropriate vertical spacing between:
+- The preceding website section
+- The partner heading
+- The logo marquee
+- The footer
+
+### Important
+
+Before coding:
+
+1. Inspect the existing Replit project.
+2. Identify the current framework and styling system.
+3. Reuse the project's existing fonts, colors, spacing conventions, and components where appropriate.
+4. Do not introduce unnecessary dependencies.
+5. Do not replace existing functionality.
+6. Only create/modify the files necessary for this feature.
+
+After implementing it, test the page at:
+- 1440px desktop
+- 1024px tablet
+- 768px tablet
+- 390px mobile
+
+Check specifically for:
+- horizontal page overflow
+- animation jumps
+- empty spaces in the marquee
+- logos being clipped incorrectly
+- layout shifts
+- mobile responsiveness
+- reduced-motion behavior
+
+The final result should feel like a polished, professional **automotive partner-brand marquee**, visually inspired by the General Gumi footer partner strip but implemented as a clean, reusable component for my own car-parts shop.
